@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置指令2</title>
+	<style>
+		.red{
+			color: red;
+		}
+		.blue{
+			color: blue;
+		}
+	</style>
+</head>
+<body ng-app="app">
+	<!-- ng-repeat指令 -->
+	<div ng-controller="ctrl">
+
+		<ul>
+			<li ng-repeat="key in students">{{key.name}}</li>
+			
+			<li ng-repeat="(key,val) in students">{{key+1}},{{val}}</li>
+		</ul>
+		<img ng-src="{{path}}" alt=""><br>
+		<!-- ng-switch -->
+		<select ng-model="select">
+			<option value="01">HTML</option>
+			<option value="02">CSS</option>
+			<option value="03">JavaScript</option>
+		</select>
+		<div ng-switch="select">
+			<div ng-switch-when="01">
+				<ul>
+					<li>html基础</li>
+					<li>html中级</li>
+					<li>html高级</li>
+				</ul>
+			</div>
+			<div ng-switch-when="02">CSS</div>
+			<div ng-switch-when="03">JavaScript</div>
+		</div>
+		<ul>
+			<li class="red">红色</li>
+			<li ng-class="{blue:true,red:true}">蓝色</li>
+		</ul>
+		<input type="text" ng-disabled="false">
+		<input type="text" value="文本框" ng-readonly="false">
+		<!-- ng-checked -->
+		<ul>
+			<li><input type="checkbox" ng-checked="true">游泳</li>
+			<li><input type="checkbox">打球</li>
+			<select>
+				<option value="1">琴</option>
+				<option value="2">棋</option>
+				<option value="3">书</option>
+				<option value="4">画</option>
+				<option value="5" ng-selected="true">射</option>
+			</select>
+		</ul>
+		<!-- ng-include -->
+		<div ng-include="'./foot.html'"></div>
+		
+	</div>
+</body>
+<script src="../angularjs/angular.min.js"></script>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("ctrl",["$scope",function($scope){
+		$scope.students = [{"name":"阿瑟"},{"name":"王三大"},{"name":"啊实打实"},{"name":"三大阿斯顿"}];
+		$scope.path = "images/100.jpg";
+	}]);
+</script>
+</html>

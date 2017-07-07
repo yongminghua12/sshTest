@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置指令</title>
+	<script src="../angularjs/angular.min.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl2",["$scope",function($scope){
+			$scope.name = "阿萨斯";
+		}]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.name = "吴龙华XXX";
+			$scope.age = 23;
+			$scope.obj = {"id":1001,"name":"小华","job":"teacher"};
+			$scope.studys = ["chinese","math","english"];
+			$scope.fun = function(){
+				console.log(111);
+			}
+		}]);
+	</script>
+</head>
+<body ng-app="app">
+	<!-- 使用ng-model -->
+	<input type="text" ng-model="msg">
+	<h4>{{msg}}</h4>
+	<!-- 使用ng-controller -->
+	<p ng-controller="ctrl">
+		这个是ng-controller获取的数据:{{name}}的年龄是{{age}}<br>
+		{{obj.name}}<br>
+		{{studys[0]}}<br><br><br>
+		<input type="button" value="点击" ng-click="fun();">
+	</p>
+	<div ng-controller="ctrl2">
+		<p ng-bind="name"></p>
+		<p>{{name}}</p>
+	</div>
+	<!-- ng-show/ng-hide -->
+	<!-- ng-show用于显示或隐藏某个节点，当值为0或者false时，隐藏该节点
+		 当值为1或者true时，显示该节点 -->
+		<!-- ng-hide与ng-show作用相反 -->
+	<ul>
+		<li ng-hide="0">11</li>
+		<li ng-show="false">22</li>
+		<li ng-hide="1">33</li>
+		<li ng-show="true">44</li>
+	</ul>
+	<!-- ng-if 判断节点是否存在 用法与ng-show/ng-hide一样-->
+	<ul>
+		<li ng-if="true">第一个</li>
+		<li ng-if="0">第二个</li>
+		<li ng-if="false">第三个</li>
+	</ul>
+
+</body>
+
+</html>

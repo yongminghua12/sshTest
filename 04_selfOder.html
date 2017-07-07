@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<script src="../angularjs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+	<h3>属性形式使用自定义指令:</h3>
+	<div self-order></div>
+	<h3>标签形式使用自定义指令:</h3>
+	<self-order></self-order>
+	<h3>类名形式使用自定义指令:</h3>
+	<div class="self-order"></div>
+	<h3>注释形式使用自定义指令:</h3>
+	<!-- directive:self-order -->
+	<h3>访问url</h3>
+	<div second-order></div>
+
+</body>
+
+<script>
+	var app = angular.module("app",[]); // 申明模块
+	// 调用 directive方法，创建自定义的指令
+	// 传入2个参数：字符串，作为自定义指令的名称，function自定义指令的作用
+	// 名称通常使用驼峰命名法
+	app.directive("selfOrder",function(){
+		return{
+			restrict:"ECMA",
+			replace:true,
+			template:"<h4>自定义指令</h4>"
+		}
+	});
+	// 如果返回的是一个URL，需要通过服务器访问
+	app.directive("secondOrder",function(){
+		return{
+			templateUrl:"foot.html"
+		}
+	});
+</script>
+</html>

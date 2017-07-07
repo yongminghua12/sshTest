@@ -1,0 +1,58 @@
+
+<AngularJs
+	1、什么是 AngularJs?
+		是一个前端框架，以数据和逻辑为核心
+		而 JQuery是以 DOM为核心(驱动)
+	
+	2、设计模式：MVC模式(02_mvc.html)
+		Model:      模型层 - 主要用来处理数据，一般指操作数据库
+		View:		视图层 - 主要用来展示数据，一般通过HTML展示
+		Controller:	控制层 - 一般用来做连接模型层与视图层的桥梁
+	
+	3、AngularJs的模块化概念(module)
+		使用 AngularJs构建一个应用程序是以模块的方式组织的
+		AngularJs应用程序的编写分为三大步：
+		(1) 定义应用 ng-app="abc"
+		(2) 定义模块 var app = angular,module("xxx",[]);
+			module里有2个参数，第一个是应用名称，第二个是数组，数组里是该模块所依赖的模块
+		(3) 定义控制器 app.controller("ctrl",[]);
+			第一个参数是控制器名称，第二个参数是数组，里面有多个元素，其中前面的为字符串，
+			是 AngularJs自己定义好的东西，最后一个元素为 function
+	
+	4、AngularJs的指令
+		AngularJs自己已经定义好的指令 - 内置指令
+		都是以 ng-开头，属于 AngularJs的核心内容
+		ng-app        	: 定义应用 - 指定应用的根目录，至少有一个元素指定了此属性
+		ng-model      	: 定义绑定数据的名称
+		ng-controller	: 定义控制器作用的范围
+		ng-bind       	: 数据绑定
+		ng-show/ng-hide : 显示或隐藏
+		ng-click		: 单击
+		ng-if			: 判断某个节点是否存在，存在则显示，不存在不显示
+		ng-repeat		: 遍历，迭代
+		ng-src			: 
+		ng-switch		: 
+		ng-class		
+		ng-disabled
+		ng-readonly
+		ng-checked
+		ng-selected
+		ng-include		: 用于引入另一个页面文件
+			注意点：使用 ng-include时，页面发送请求的，需要通过服务器访问
+					ng-include="'路径'" 请求的资源路径需要放在单引号里面
+
+		自定义指令
+			通过模块调用 directive方法来定义指令
+			定义好的指令有4种方式去使用
+				元素、属性、类、注释
+				 E	   A	 C	 M
+				其中E(element)、A(attribute)是默认都可以使用的方式
+				如果需要通过类名或注释来调用，需要添加 restrict，设置添加C(Class)或M(Mark)
+				(如果不加 restrict，默认 restrict就是 EA，如果添加了 restrict，默认的就无效)
+				
+				如果要通过注释去调用指令，
+				还需要添加一个 replace:true，如果不添加，则指令就真的被注释了
+				在使用注释的方式时，需要有新的元素节点来替换原来注释的地方
+
+				如果访问的是一个普通的字符串，使用 template就可以
+				如果访问的是一个 url，需要使用 templateUrl，同时要从服务器访问
